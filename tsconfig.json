@@ -13,6 +13,14 @@
     "useDefineForClassFields": true,
     "sourceMap": true,
     "baseUrl": ".",
+
+    /* 核心修改部分 */
+    "allowJs": true,                    // 2. 允许编译器处理 .js 文件
+    "checkJs": false,                   // 3. 不检查 .js 文件内部的错误
+    "noImplicitAny": false,             // 4. 关闭隐式 any 报错
+    "noUnusedLocals": false,            // 5. 允许定义但不使用的变量
+    "noUnusedParameters": false,        // 6. 允许定义但不使用的参数
+    
     "types": [
       "webpack-env"
     ],
@@ -34,7 +42,7 @@
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx"
-  ],
+, "src/icons/index.ts", "src/store/modules/user.js", "src/store/index.js"  ],
   "exclude": [
     "node_modules"
   ]
