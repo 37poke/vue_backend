@@ -31,7 +31,6 @@ export const removeItem = (key) => {
 /**
  * 删除所有数据
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const removeAllItem = (key) => {
+export const removeAllItem = () => {
   window.localStorage.clear()
 }

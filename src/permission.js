@@ -1,22 +1,33 @@
-import { router } from './router'
-import { store } from './store'
+import router from './router/index.js'
+import store from './store/index.js'
 
-//白名单
 const whiteList = ['/login']
 
-//路由前置守卫
 router.beforeEach(async (to, from, next) => {
-  //存在token进入主页
   if (store.getters.token) {
-    //如果已经登录不允许进入login
     if (to.path === '/login') {
       next('/')
     } else {
-      next() //放行
+      // 检查是否已经获取了用户信息
+      if (!store.getters.hasUserInfo) {
+        try {
+          await store.dispatch('user/getUserInfo')
+          next() // 获取成功，放行
+        } catch (error) {
+          // 获取失败（Token失效等），清除Token并跳回登录
+          await store.dispatch('user/logout')
+          next('/login')
+        }
+      } else {
+        next() // 已有用户信息，放行
+      }
     }
   } else {
-    if (whiteList.indexOf(to.path) > -1) next()
-    else {
+    // 没有token
+    if (whiteList.includes(to.path)) {
+      next()
+    } else {
+      console.log(store.getters)
       next('/login')
     }
   }

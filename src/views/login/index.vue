@@ -1,6 +1,6 @@
 <template>
   <div class="login-container">
-    <el-form class="login-form" :model="loginForm" :rules="loginRules" ref="loginFromRef">
+    <el-form class="login-form" :model="loginForm" :rules="loginRules" ref="loginFormRef">
       <div class="title-container">
         <h3 class="title">用户登录</h3>
       </div>
@@ -41,6 +41,7 @@
   import { validatePassword } from './rules'
   import { useStore } from 'vuex'
   import { useI18n } from 'vue-i18n'
+  import { useRouter } from 'vue-router'
   import { ref, computed } from 'vue'
 
   //表单数据
@@ -83,23 +84,26 @@
   const loading = ref(false)
   const store = useStore()
   //拿到表单实例
-  const loginFromRef = ref(null)
-  const handleLogin = () => {
-    //表单校验
-    loginFromRef.value.validate((valid) => {
-      if (!valid) return
+  const loginFormRef = ref(null)
+  const router = useRouter()
+
+  const handleLogin = async () => {
+    // 1. 使用 Promise 风格的 validate (更现代)
+    try {
+      await loginFormRef.value.validate()
+
       loading.value = true
-      store
-        .dispatch('user/login', loginForm.value)
-        .then(() => {
-          loading.value = false
-          //TODO:登录后操作
-        })
-        .catch((err) => {
-          console.log(err)
-          loading.value = false
-        })
-    })
+      // 2. 触发 action
+      await store.dispatch('user/login', loginForm.value)
+
+      // 3. 成功后跳转
+      loading.value = false
+      router.push('/')
+    } catch (err) {
+      // 校验失败或登录失败都会进入这里
+      console.error('登录流程出错:', err)
+      loading.value = false
+    }
   }
 </script>
 <style lang="scss" scoped>

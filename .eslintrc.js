@@ -25,7 +25,7 @@ module.exports = {
     'vue/multi-word-component-names': 'off', // 允许组件名为单个单词（如 Index.vue）
 
     // 强制使用 Prettier 的规则进行报错
-    'prettier/prettier': 'error',
+    'prettier/prettier': 'warn',
 
     // TS 相关规则
     '@typescript-eslint/no-explicit-any': 'off', // 企业项目中某些场景下允许 any

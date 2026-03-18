@@ -35,7 +35,6 @@
   }))
   //内部图标
   const iconName = computed(() => `#icon-${props.icon}`)
-  console.log(props)
 </script>
 
 <style scoped>

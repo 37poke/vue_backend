@@ -5,6 +5,8 @@ import router from './router'
 import store from './store'
 import installElementPlus from './plugins/element'
 import './styles/index.scss'
+import './permission.js'
+
 //导入svgIcon
 import installIcons from '@/icons'
 const app = createApp(App)
