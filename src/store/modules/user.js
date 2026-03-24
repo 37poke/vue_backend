@@ -4,7 +4,7 @@ import md5 from 'md5'
 import { TOKEN } from '@/constant/index.js'
 import { setItem, getItem, removeAllItem } from '@/utils/storage'
 import { setTimeStamp } from '@/utils/auth'
-import router from '@/router'
+import router, { resetRouter } from '@/router'
 export default {
   namespaced: true,
   state: () => ({
@@ -47,6 +47,7 @@ export default {
       return res
     },
     logout() {
+      resetRouter()
       this.commit('user/setToken', '')
       this.commit('user/setUserInfo', {})
       removeAllItem

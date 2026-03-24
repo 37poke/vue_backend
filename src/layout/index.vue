@@ -4,12 +4,13 @@
     <sidebar
       id="guide-sidebar"
       class="sidebar-container"
-      :style="{ backgroundColor: variables.menuBg }"
+      :style="{ backgroundColor: $store.getters.cssVar.menuBg }"
     />
     <div class="main-container">
       <div class="fixed-header">
         <!-- 顶部的 navbar -->
         <navbar />
+        <tags-view></tags-view>
       </div>
       <!-- 内容区 -->
       <app-main />
@@ -20,7 +21,7 @@
   import Navbar from './components/Navbar.vue'
   import Sidebar from './components/Sidebar'
   import AppMain from './components/AppMain'
-  import variables from '@/styles/variables.module.scss'
+  import TagsView from '@/components/tagsView'
 </script>
 <style lang="scss" scoped>
   @import '~@/styles/mixin.scss';

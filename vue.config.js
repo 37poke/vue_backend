@@ -39,5 +39,11 @@ module.exports = defineConfig({
         changeOrigin: true, // 是否跨域
       },
     },
+    client: {
+      overlay: {
+        warnings: false,
+        errors: true,
+      },
+    },
   },
 })

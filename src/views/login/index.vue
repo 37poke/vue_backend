@@ -43,6 +43,7 @@
   import { useI18n } from 'vue-i18n'
   import { useRouter } from 'vue-router'
   import { ref, computed } from 'vue'
+  import { watchSwitchLang } from '@/utils/i18n'
 
   //表单数据
   const loginForm = ref({
@@ -105,6 +106,10 @@
       loading.value = false
     }
   }
+
+  watchSwitchLang(() => {
+    loginFormRef.value.validate()
+  })
 </script>
 <style lang="scss" scoped>
   $bg: #2d3a4b;

@@ -42,7 +42,7 @@
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx"
-, "src/icons/index.ts", "src/store/modules/user.js", "src/store/index.js", "src/router/index.js", "src/main.ts"  ],
+, "src/icons/index.ts", "src/store/modules/user.js", "src/store/index.js", "src/router/index.js", "src/main.ts", "src/views/login/rules.js", "src/views/import/utils.js", "src/views/article-ranking/sortable/index.js"  ],
   "exclude": [
     "node_modules"
   ]

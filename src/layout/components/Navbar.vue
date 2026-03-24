@@ -6,7 +6,7 @@
     <div class="right-menu">
       <guide class="right-menu-item hover-effect" />
       <header-search class="right-menu-item hover-effect"></header-search>
-
+      <screenfull class="right-menu-item hover-effect" />
       <theme-picker class="right-menu-item hover-effect"></theme-picker>
       <lang-select class="right-menu-item hover-effect" />
       <!-- 头像 -->
@@ -18,12 +18,14 @@
         <template #dropdown>
           <el-dropdown-menu class="user-dropdown">
             <router-link to="/">
-              <el-dropdown-item> 首页</el-dropdown-item>
+              <el-dropdown-item>{{ $t('msg.navBar.home') }} </el-dropdown-item>
             </router-link>
             <a target="_blank" href="https://coding.imooc.com/class/542.html">
-              <el-dropdown-item>课程主页</el-dropdown-item>
+              <el-dropdown-item>{{ $t('msg.navBar.course') }}</el-dropdown-item>
             </a>
-            <el-dropdown-item divided @click="logout"> 退出登录 </el-dropdown-item>
+            <el-dropdown-item divided @click="logout">
+              {{ $t('msg.navBar.logout') }}
+            </el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
@@ -32,9 +34,16 @@
 </template>
 
 <script setup>
+  import Hamburger from '@/components/Hamburger'
+  import Breadcrumb from '@/components/Breadcrumb'
+  import LangSelect from '@/components/LangSelect'
+  import ThemePicker from '@/components/ThemePicker'
+  import Screenfull from '@/components/Screenfull'
+  import HeaderSearch from '@/components/HeaderSearch'
+  import Guide from '@/components/Guide'
+  import {} from 'vue'
   import { useStore } from 'vuex'
-  import Hamburger from '@/components/hamburger'
-  import breadcrumb from '@/components/breadcrumb'
+
   const store = useStore()
   const logout = () => {
     store.dispatch('user/logout')
